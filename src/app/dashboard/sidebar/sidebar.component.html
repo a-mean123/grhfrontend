@@ -1,0 +1,69 @@
+
+<div class="left-side-menu">
+  
+    <div class="h-100" data-simplebar>
+
+         <!-- User box -->
+        <div class="user-box text-center">
+
+            <img routerLink="/dashboard/profile" src="assets/logo.png" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md ava">
+                <div class="dropdown">
+                    <a routerLink="/dashboard/profile" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false"> {{ adminData.fullname }} </a>
+                   
+                </div>
+
+            <p class="text-muted left-user-info"> {{ adminData.email }} </p>
+
+            
+        </div>
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+
+            <ul id="side-menu">
+
+                <li class="menu-title">Navigation</li>
+                
+                <li class="side-nav-item">
+                    <a [routerLink]="['/dashboard/departement']"  data-bs-toggle="collapse" class="side-nav-link">
+                        <i class="uil-home-alt"></i>
+                        <span> Gestion departement </span>
+                    </a>
+    
+                </li>
+    
+                <li class="side-nav-item">
+                    <a [routerLink]="['/dashboard/employee']" data-bs-toggle="collapse" class="side-nav-link">
+                        <i class="uil-home-alt"></i>
+                        <span> Gestion employee </span>
+                    </a>
+    
+                </li>
+
+                <li class="side-nav-item">
+                    <a [routerLink]="['/dashboard/projet']" data-bs-toggle="collapse" class="side-nav-link">
+                        <i class="uil-home-alt"></i>
+                        <span> Gestion Projet </span>
+                    </a>
+    
+                </li>
+
+                <li class="side-nav-item">
+                    <a [routerLink]="['/dashboard/client']" data-bs-toggle="collapse" class="side-nav-link">
+                        <i class="uil-home-alt"></i>
+                        <span> Gestion client </span>
+                    </a>
+    
+                </li>
+          
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>

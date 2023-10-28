@@ -1,0 +1,89 @@
+
+
+<div class="container mt-5">
+
+    <h2>Modifier un departement</h2>
+
+    <div class="row">
+
+        <div class="col-6 mx-auto">
+
+            <form role="form" [formGroup]="depForm" (ngSubmit)="update()">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nom departement</label>
+                    <input formControlName="nom" type="text" [ngClass]="{ 'form-control': true, 'error': depForm.controls['nom'].touched && depForm.controls['nom'].invalid } " id="name" placeholder="">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">dep Description</label>
+                    <textarea formControlName="description" [ngClass]="{ 'form-control': true, 'error': depForm.controls['description'].touched && depForm.controls['description'].invalid } " name="" id="" cols="30" rows="5"></textarea>
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Salle</label>
+                    <input formControlName="salle" type="text" [ngClass]="{ 'form-control': true, 'error': depForm.controls['salle'].touched && depForm.controls['salle'].invalid } " id="name" placeholder="">
+                </div>  
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Etage</label>
+                    <input formControlName="etage" type="text" [ngClass]="{ 'form-control': true, 'error': depForm.controls['etage'].touched && depForm.controls['etage'].invalid } " id="name" placeholder="">
+                </div>  
+
+                <button [disabled]=" depForm.invalid " class="btn btn-primary form-control">Enregistrer</button>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="container mt-5">
+
+    <div style="display: flex;justify-content: space-between;">
+
+        <h2>Liste projets affectés a ce departement</h2>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th class="w-50">Description</th>
+                    <th>budget </th>
+                    <th>etat</th>
+                    <th>option</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let projet of projets">
+                    <td> {{ projet.titre }} </td>
+                    <td> {{ projet.description }} </td>
+                    <td> {{ projet.budget }} </td>
+                    <td> 
+                        <span class="badge bg-warning" *ngIf="projet.etat == 'en attente'" >{{ projet.etat }}</span>    
+                        <span class="badge bg-primary" *ngIf="projet.etat == 'encour'" >{{ projet.etat }}</span>    
+                        <span class="badge bg-success" *ngIf="projet.etat == 'complet'" >{{ projet.etat }}</span>    
+                    </td>
+                    <td>
+                        
+                        <button  [routerLink]="[ '/dashboard/projet/update' , projet._id ]"  class="btn btn-info m-1"> Detail </button>
+
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+
+
+
+
+    </div>
+
+
+</div>

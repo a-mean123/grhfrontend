@@ -1,0 +1,152 @@
+<div class="container mt-5">
+
+   <div class="d-flex justify-content-between">
+    <h2>Editer Projet</h2>
+    <button class="btn btn-primary" (click)="toGenerateFacture= !toGenerateFacture ; defineClient()">Generer facture</button>
+
+   </div>
+    <div class="row mt-5">
+
+        <div class="col-6 mx-auto">
+            <form role="form" [formGroup]="projetForm" (ngSubmit)="update()">
+                <div class="mb-3">
+                    <label class="form-label" for="name">titre projet</label>
+                    <input formControlName="titre" type="text" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['titre'].touched && projetForm.controls['titre'].invalid } " id="name" placeholder="">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Description projet</label>
+                    <textarea formControlName="description" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['description'].touched && projetForm.controls['description'].invalid } " name="" id="" cols="30" rows="5"></textarea>
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Budget</label>
+                    <input formControlName="budget" type="text" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['budget'].touched && projetForm.controls['budget'].invalid } " id="name" placeholder="">
+                </div>  
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Etat</label>
+                    <select  formControlName="etat" type="text" [ngClass]="{ 'form-select': true, 'error': projetForm.controls['etat'].touched && projetForm.controls['etat'].invalid } " >
+                        <option  value="en attente"> En attente </option>
+                        <option  value="encour"> En cour </option>
+                        <option  value="complet"> Complet </option>
+                    </select>
+                </div>  
+                <div class="mb-3">
+                    <label class="form-label" for="name">Departement</label>
+                    <select  formControlName="idDep" type="text" [ngClass]="{ 'form-select': true, 'error': projetForm.controls['idDep'].touched && projetForm.controls['idDep'].invalid } " >
+                        <option *ngFor="let item of departements" [value]="item._id"> {{ item.nom }} </option>
+                    </select>
+                </div>  
+               
+                <div class="mb-3">
+                    <label class="form-label" for="name">Clients</label>
+                    <select  formControlName="idClient" type="text" [ngClass]="{ 'form-select': true, 'error': projetForm.controls['idClient'].touched && projetForm.controls['idClient'].invalid } " >
+                        <option *ngFor="let item of clients" [value]="item._id"> {{ item.nom }} </option>
+                    </select>
+                </div>  
+
+                <button [disabled]=" projetForm.invalid " class="btn btn-primary form-control">Enregistrer</button>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="ec-content-wrapper" id="facture"  *ngIf="toGenerateFacture" >
+    <div class="content">
+        <div class="row mt-5" >
+            <div class="col-12">
+                <div class="ec-odr-dtl card card-default">
+                    <div class="card-body" >
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Client:</strong></div><br>
+                                    <div class="info-content">
+                                        Nom: {{ factureClient.nom + ' ' + factureClient.prenom}} <br>
+                                        email: {{ factureClient.email }} <br>
+                                  
+                                        tel: <abbr title="Phone">Phone:</abbr> {{ factureClient.tel }}
+                      
+                                    </div>
+                                </address>
+                            </div>
+                           
+                        
+                    
+
+                            <div class="col-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Entreprise:</strong></div><br>
+                                    <div class="info-content">
+                                       raison social: <strong> GESTION RH </strong><br>
+                                       tel: +216 99 876 435<br>
+                                       address: Tunisie , rue 2322 <br>
+                                    </div>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="tbl-title">PROJET</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-striped o-tbl">
+                                        <thead>
+                                            <tr class="line">
+                                                <td><strong>#</strong></td>
+                                        
+                                                <td class="text-center"><strong>TITRE</strong></td>
+                                                <td class="text-center"><strong>PRIX/UNIT</strong></td>
+                                                <td class="text-center"><strong>QUANTITE</strong></td>
+                                                <td class="text-right"><strong>SUBTOTAL</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                             
+                                                <td>
+                                                   {{ projetForm.value.titre }}
+                                                </td>
+                                                <td class="text-center"> TND {{ projetForm.value.budget }} </td>
+                                                <td class="text-center">1</td>
+                                                <td class="text-right"> TND {{projetForm.value.budget}}</td>
+                                            </tr>                                          
+                                          
+                                       
+                                            <tr>
+                                                <td colspan="4">
+                                                </td>
+                                                <td class="text-right"><strong>Total</strong></td>
+                                                <td class="text-right"><strong> TND {{ projetForm.value.budget }} </strong></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="4">
+                                                </td>
+                                                <td class="text-right"><strong>Total TTC</strong></td>
+                                                <td class="text-right"><strong> TND {{ projetForm.value.budget + (projetForm.value.budget * 0.19) }} (TVA 19%) </strong></td>
+                                            </tr> 
+
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div>
+
+<div class="row" *ngIf="toGenerateFacture">
+    <div class="col-2 ms-auto mt-3">
+        <button class="btn btn-primary" (click)="printOut('facture')">imprime facture</button>
+    </div>
+</div>

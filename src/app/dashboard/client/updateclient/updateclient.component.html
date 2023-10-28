@@ -1,0 +1,97 @@
+<div class="container mt-5">
+
+    <h2>Modifier un client</h2>
+
+    <div class="row">
+
+        <div class="col-6 mx-auto">
+            <form role="form" [formGroup]="clientForm" (ngSubmit)="update()">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nom client</label>
+                    <input formControlName="nom" type="text" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['nom'].touched && clientForm.controls['nom'].invalid } " id="name" placeholder="">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Prenom client</label>
+                    <input formControlName="prenom" type="text" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['prenom'].touched && clientForm.controls['prenom'].invalid } " id="name" placeholder="">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">E-mail client</label>
+                    <input formControlName="email" type="email" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['email'].touched && clientForm.controls['email'].invalid } " id="name" placeholder="">
+                </div>   
+               
+                <div class="mb-3">
+                    <label class="form-label" for="name">Cin</label>
+                    <input formControlName="cin" type="text" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['cin'].touched && clientForm.controls['cin'].invalid } " id="name" placeholder="">
+                </div>  
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Tel</label>
+                    <input formControlName="tel" type="text" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['tel'].touched && clientForm.controls['tel'].invalid } " id="name" placeholder="">
+                </div> 
+                
+                <div class="mb-3">
+                    <label class="form-label" for="name">Image</label>
+                    <input formControlName="image" type="file" (change)="selectionnerImage($event)" [ngClass]="{ 'form-control': true, 'error': clientForm.controls['image'].touched && clientForm.controls['image'].invalid } " id="name" placeholder="">
+                </div> 
+
+                <button [disabled]=" clientForm.invalid " class="btn btn-primary form-control">Ajouter</button>
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="container mt-5">
+
+    <div style="display: flex;justify-content: space-between;">
+
+        <h2>Liste projets proposé par ce client</h2>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th class="w-50">Description</th>
+                    <th>budget </th>
+                    <th>etat</th>
+                    <th>option</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let projet of projets">
+                    <td> {{ projet.titre }} </td>
+                    <td> {{ projet.description }} </td>
+                    <td> {{ projet.budget }} </td>
+                    <td> 
+                        <span class="badge bg-warning" *ngIf="projet.etat == 'en attente'" >{{ projet.etat }}</span>    
+                        <span class="badge bg-primary" *ngIf="projet.etat == 'encour'" >{{ projet.etat }}</span>    
+                        <span class="badge bg-success" *ngIf="projet.etat == 'complet'" >{{ projet.etat }}</span>    
+                    </td>
+                    <td>
+                        
+                        <button  [routerLink]="[ '/dashboard/projet/update' , projet._id ]"  class="btn btn-info m-1"> Detail </button>
+
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+
+
+
+
+    </div>
+
+
+</div>

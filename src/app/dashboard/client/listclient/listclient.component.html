@@ -1,0 +1,33 @@
+<div class="container mt-5">
+
+    <div style="display: flex;justify-content: space-between; ">
+        <h2> Gestion client </h2>
+     
+        <button [routerLink]="['/dashboard/client/ajout']" class="btn btn-success">Ajouter</button>
+    </div>
+
+
+    <div class="row mt-5">
+
+        <div class="col-3" *ngFor="let cl of clients">
+
+            <div class="card">
+                <img [src]="'http://127.0.0.1:3000/image/' + cl.image" class="card-img-top"   alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"> {{ cl.nom + ' ' + cl.prenom }} </h5>
+                  <p class="card-text"> {{ cl.email }} </p>
+                  <small class="text-muted"> {{ 'cin : ' + cl.cin }} </small>  
+                  <small class="text-muted"> {{ 'tel : ' + cl.tel }} </small>  
+                </div>
+                <div class="card-footer">
+                    <button (click)="delete( cl._id )" class="btn btn-danger me-1">delete</button>
+                    <button [routerLink]="['/dashboard/client/update' , cl._id]" class="btn btn-outline-info">Details</button>
+                </div>
+              </div>
+
+        </div>
+
+
+    </div>
+
+</div>

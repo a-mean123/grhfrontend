@@ -1,0 +1,43 @@
+<div class="container mt-5">
+
+    <h2>Ajouter un Projet</h2>
+
+    <div class="row">
+
+        <div class="col-6 mx-auto">
+            <form role="form" [formGroup]="projetForm" (ngSubmit)="ajouter()">
+                <div class="mb-3">
+                    <label class="form-label" for="name">titre projet</label>
+                    <input formControlName="titre" type="text" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['titre'].touched && projetForm.controls['titre'].invalid } " id="name" placeholder="">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Description projet</label>
+                    <textarea formControlName="description" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['description'].touched && projetForm.controls['description'].invalid } " name="" id="" cols="30" rows="5"></textarea>
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="name">Budget</label>
+                    <input formControlName="budget" type="text" [ngClass]="{ 'form-control': true, 'error': projetForm.controls['budget'].touched && projetForm.controls['budget'].invalid } " id="name" placeholder="">
+                </div>  
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Departement</label>
+                    <select  formControlName="idDep" type="text" [ngClass]="{ 'form-select': true, 'error': projetForm.controls['idDep'].touched && projetForm.controls['idDep'].invalid } " >
+                        <option *ngFor="let item of departements" [value]="item._id"> {{ item.nom }} </option>
+                    </select>
+                </div>  
+               
+                <div class="mb-3">
+                    <label class="form-label" for="name">Clients</label>
+                    <select  formControlName="idClient" type="text" [ngClass]="{ 'form-select': true, 'error': projetForm.controls['idClient'].touched && projetForm.controls['idClient'].invalid } " >
+                        <option *ngFor="let item of clients" [value]="item._id"> {{ item.nom }} </option>
+                    </select>
+                </div>  
+
+                <button [disabled]=" projetForm.invalid " class="btn btn-primary form-control">Ajouter</button>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>

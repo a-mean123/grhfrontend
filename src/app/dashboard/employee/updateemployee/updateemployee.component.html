@@ -1,0 +1,67 @@
+
+<div class="container mt-5">
+
+    <h2>Modifier un Employee</h2>
+
+    <div class="row">
+
+        <div class="col-6 mx-auto">
+
+            <form role="form" [formGroup]="employeeForm" (ngSubmit)="update()">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nom client</label>
+                    <input formControlName="nom" type="text"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['nom'].touched && employeeForm.controls['nom'].invalid } "
+                        id="name" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Prenom client</label>
+                    <input formControlName="prenom" type="text"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['prenom'].touched && employeeForm.controls['prenom'].invalid } "
+                        id="name" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">E-mail client</label>
+                    <input formControlName="email" type="email"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['email'].touched && employeeForm.controls['email'].invalid } "
+                        id="name" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Cin</label>
+                    <input formControlName="cin" type="text"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['cin'].touched && employeeForm.controls['cin'].invalid } "
+                        id="name" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Tel</label>
+                    <input formControlName="tel" type="text"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['tel'].touched && employeeForm.controls['tel'].invalid } "
+                        id="name" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Image</label>
+                    <input formControlName="image" type="file" (change)="select($event)"
+                        [ngClass]="{ 'form-control': true, 'error': employeeForm.controls['image'].touched && employeeForm.controls['image'].invalid } "
+                        id="name" placeholder="">
+                </div>
+
+                <select formControlName="idDep" class="form-select">
+
+                    <label class="form-label" for="name">Departement</label>
+                    <option *ngFor="let item of departements" [value]="item._id"> {{ item.nom }} </option>
+
+                </select>
+
+
+
+                <button [disabled]=" employeeForm.invalid " class="btn btn-primary form-control mt-4">Enregistrer</button>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
